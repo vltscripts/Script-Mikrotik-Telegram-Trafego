@@ -1,6 +1,6 @@
 # Script-Mikrotik-Telegram-Trafego
 
-Esse script tem como Objetivo pegar a quantidade de Megas que esta passando pela " Ether " e mandar mensagem com a quantidade de megas que esta passando por aquela ether naquele momento para Telegram.
+Esse script tem como Objetivo pegar a quantidade de Megas que esta passando pela " Ether " e mandar mensagem com a quantidade de megas que esta passando por aquela ether para o Telegram.
 
 Esse script pode ser util para ficar monitorando links de entrada do servidor.
 
