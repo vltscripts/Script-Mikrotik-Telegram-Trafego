@@ -1,0 +1,29 @@
+{
+:local iname;
+:local monitor;
+:local speedRX;
+:local speedTX;
+:local mbpsRX;
+:local mbpsTX
+:local Inter "sfp-sfpplus2"; # Seleciona Interface que quer Monitorar #
+############################################################################
+#Aqui Coloca Token e Chat-ID --- Telegram
+:local Token "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+:local Chat "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+############################################################################
+
+:foreach interface in=[/interface ethernet  find name=$Inter] do={
+:delay 100ms;
+:set $iname [/interface ethernet  find name=$Inter];
+:set $monitor [/interface monitor-traffic $iname as-value once];
+:set $speedRX ($monitor->"rx-bits-per-second");
+:set $speedTX ($monitor->"tx-bits-per-second");
+:set $mbpsRX (($speedRX/1000)/1000);
+:set $mbpsTX (($speedTX/1000)/1000);
+:gl Megas $mbpsRX;  # Mudar aqui para pegar Trafego TX ou RX #
+
+##############################################################################
+/tool fetch url="https://api.telegram.org/bot$Token/sendMessage\?chat_id=$Chat&text=%0A \ %F0%9F%9F%A9 $Megas-Megas-Link-Geral" keep-result=no
+
+}
+}
